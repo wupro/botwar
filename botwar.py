@@ -37,11 +37,11 @@ settings = {
     "kata": "prank",
     "blacklist": {}
 }
-Drop_Xv = "u5818cb4404411c2e2e6e6937d172cca8" #ID_DROPING_BOTS
-Xv_WIN = "udfaf52176415b46cb445ae2757ec85f3" #ID_WINDOWS_XP
-Xv_LAN = "u17a086ccff618e754588a1108335867f" #ID_SERVER_LAN
-Xv_Servic = "ub0842532a31b9d99856cf2590b17d33f" #ID_PROV_SERVICE
-Xv_DxD = "uc8dc5352066b6a344bde3c07b0fe04ea" #ID_SYSTEM_BOTS
+Drop_Xv = "ufe1707ae9b2ff7ab61505795b7995440" #ID_DROPING_BOTS
+Xv_WIN = "ufe1707ae9b2ff7ab61505795b7995440" #ID_WINDOWS_XP
+Xv_LAN = "ufe1707ae9b2ff7ab61505795b7995440" #ID_SERVER_LAN
+Xv_Servic = "ufe1707ae9b2ff7ab61505795b7995440" #ID_PROV_SERVICE
+Xv_DxD = "ufe1707ae9b2ff7ab61505795b7995440" #ID_SYSTEM_BOTS
 Line_Import = [Drop_Xv,Xv_WIN,Xv_LAN,Xv_Servic,Xv_DxD] #ALL_IMPORTING
 def restartBot():
     print ("[ INFO ] BOT RESETTED")
@@ -51,7 +51,7 @@ def restartBot():
     os.execl(python, python, *sys.argv)
 def logError(text):
     line.log("[ ERROR ] " + str(text))
-    tz = pytz.timezone("Asia/Jakarta")
+    tz = pytz.timezone("Asia/Taipei")
     timeNow = datetime.now(tz=tz)
     timeHours = datetime.strftime(timeNow,"(%H:%M)")
     day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday"]
@@ -109,7 +109,7 @@ def bot(op):
                     else:
                         prankbot = command(text)
                         if prankbot == "abouts":
-                            line.sendMessage(to,"|abouts Bot|\n|R _for respon\n|kikil _for kickall\n|kick @mention _for kick target\n|in _for bot join group\n|out _ for bot leave group\n|bye _for self leave group\n|banlist _for check blacklist user\n|clearban _for delete all blacklist\n|mybot _for send contact bot\n|backup _for backup bot")
+                            line.sendMessage(to,"|關於本機|\n|回覆訊息\n|翻群\n|踢人\n|進群\n|退群\n|主機退群\n|查看黑單\n|解黑\n|丟出機器友資\n|備份")
                         if prankbot == "backup":
                             try:
                                 line.findAndAddContactsByMid(pb1BOG)
@@ -133,9 +133,9 @@ def bot(op):
                                 pb2.findAndAddContactsByMid(Xv_LAN)
                                 pb2.findAndAddContactsByMid(Xv_Servic)
                                 pb2.findAndAddContactsByMid(Xv_DxD)
-                                line.sendMessage(to,"succes.!!.\nready..")
+                                line.sendMessage(to,"備份成功!")
                             except:
-                                line.sendMessage(to,"ready..")
+                                line.sendMessage(to,"備份成功!")
                         if prankbot == "in":
                             anggota = [pb1BOG,pb2BOG]
                             line.inviteIntoGroup(msg.to, anggota)
@@ -159,16 +159,16 @@ def bot(op):
                                         print (to,[ls])
                         elif prankbot == "banlist":
                                 if settings["blacklist"] == {}:
-                                    line.sendMessage(to,"Tidak Ada kontak blacklist")
+                                    line.sendMessage(to,"尚未有黑名單!")
                                 else:
-                                    line.sendMessage(to,"═══════List blacklist═══════")
+                                    line.sendMessage(to,"═══════以下是黑單═══════")
                                     h = ""
                                     for i in settings["blacklist"]:
                                         h = line.getContact(i)
                                         line.sendContact(to,i)
                         elif prankbot == "clearban":
                             settings["blacklist"] = {}
-                            line.sendMessage(to,"success.!!")
+                            line.sendMessage(to,"黑單已清空!")
                         elif prankbot == "mybots" or prankbot == "mybot":
                             line.sendContact(to, myBOG)
                             line.sendContact(to, pb1BOG)
@@ -183,8 +183,8 @@ def bot(op):
                         elif prankbot == "bye":
                             pb1.leaveGroup(msg.to)
                             pb2.leaveGroup(msg.to)
-                            line.sendMessage(to,"====owner creator=====")
-                            line.sendContact(to, 'u0ac948397fbc732bd3bc5ca273faa698')
+                            line.sendMessage(to,"====我的作者=====")
+                            line.sendContact(to, 'ufe1707ae9b2ff7ab61505795b7995440')
                             line.leaveGroup(msg.to)
                         elif prankbot == "out":
                             pb1.leaveGroup(msg.to)
@@ -200,7 +200,7 @@ def bot(op):
                                     if _name in g.displayName:
                                         targets.append(g.mid)
                                 if targets == []:
-                                    line.sendMessage(to,"LIMIT.!!!")
+                                    line.sendMessage(to,"規制!!!")
                                 else:
                                      for target in targets:
                                          if not target in Bots:
